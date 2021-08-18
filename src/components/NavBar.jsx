@@ -5,12 +5,12 @@ const NavBar = () => {
 
     const { user, isLoading, loginWithRedirect, logout } = useAuth0()
 
-    const [access, setAccess] = useState("")
+    const [accessMsg, setAccessMsg] = useState("")
 
     const login = async () => {
         loginWithRedirect().then(() => {
             if (!user) {
-                setAccess("Access Denied: Please logout and try again.")
+                setAccessMsg("Access Denied: Please logout and try again.")
             }
         })
     }
@@ -19,7 +19,7 @@ const NavBar = () => {
         <nav id="navbar-container">
           <p>Auth0</p>
           <div id="auth-panel">
-            {!isLoading && !user && !access && (
+            {!isLoading && !user && !accessMsg && (
                 <button onClick={login}>Log In</button>
             )}
 
