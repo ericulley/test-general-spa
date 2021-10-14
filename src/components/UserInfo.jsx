@@ -8,7 +8,7 @@ const UserInfo = () => {
 
     const [userData, setUserData] = useState()
 
-    const { getAccessTokenSilently, getIdTokenClaims } = useAuth0()
+    const { getAccessTokenSilently } = useAuth0()
 
     const fetchUserData = async () => {
         try {

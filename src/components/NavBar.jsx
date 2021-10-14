@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const NavBar = () => {
 
-    const { user, isLoading, loginWithRedirect, logout } = useAuth0()
+    const { user, isLoading, loginWithRedirect, logout, getAccessTokenSilently } = useAuth0()
 
     const [accessMsg, setAccessMsg] = useState("")
 
@@ -23,7 +23,7 @@ const NavBar = () => {
                 <button onClick={login}>Log In</button>
             )}
 
-            {/* {!isLoading && !user && access && <p>{access}</p>} */}
+            {/* {!isLoading && !user && accessMsg && <p>{accessMsg}</p>} */}
 
             {!isLoading && (
                 <button onClick={() => {logout()}}>Log Out</button>

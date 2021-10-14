@@ -1,5 +1,5 @@
 // Dependencies
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react'
+import { Auth0Provider } from '@auth0/auth0-react'
 //Components
 import NavBar from './components/NavBar'
 import Main from './components/Main'
@@ -12,15 +12,13 @@ const AUDIENCE = process.env.REACT_APP_AUTH0_AUDIENCE
 
 const App = () => {
 
-  const {  } = useAuth0()
-
   return (
     <Auth0Provider
       domain={DOMAIN}
       clientId={CLIENT_ID}
       redirectUri={window.location.origin}
       // Set audience to the identifier of the API you created
-      audience={AUDIENCE}
+      audience={"test-general-nodeAPI"}
       // useRefreshTokens={true}
       scope="read:auth"
       // sessionCheckExpiryDays is basically tryAutoAuthorize

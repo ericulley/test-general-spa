@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const Main = () => {
 
-    const { user, isAuthenticated, getIdTokenClaims } = useAuth0()
+    const { user, isAuthenticated, getIdTokenClaims, getAccessTokenSilently } = useAuth0()
 
     const [idTokenSt, setIdTokenSt] = useState('')
 
@@ -14,8 +14,12 @@ const Main = () => {
         })
     }
 
-    return (
+    const getToken = async () => {
+        const token = await getAccessTokenSilently()
+        console.log("ACCESS TOKEN", token)
+    }
 
+    return (
         <div id="main">
             <h1>Gernal SPA Test App</h1>
             <h2>Current Status</h2>
@@ -33,10 +37,10 @@ const Main = () => {
                 <h3>isAuthenticated:</h3>
                 {isAuthenticated ? <p>true</p> : <p>false</p>}
                 <h3>idToken</h3>
-                {!idTokenSt ? <button onClick={getId}>Get Id Token Claims</button> : <div>
+                {!idTokenSt ? <button onClick={() => {getToken(); getId()}}>Get Id Token Claims</button> : <div>
                     <p>aud: {idTokenSt.aud}</p>
                     <p>email: {idTokenSt.email}</p>
-                    <p>email_verified: {idTokenSt.email_verified}</p>
+                    <p>email_verified: {idTokenSt.email_verified.toString()}</p>
                     <p>exp: {idTokenSt.exp}</p>
                     <p>iat: {idTokenSt.iat}</p>
                     <p>iss: {idTokenSt.iss}</p>
