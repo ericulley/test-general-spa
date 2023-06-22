@@ -10,7 +10,7 @@ const RequestData = () => {
 
     const getProtectedData = async () => {
         try {
-            const aToken = await getAccessTokenSilently()
+            const aToken = await getAccessTokenSilently({})
             const response = await axios.get('http://localhost:8080/auth', 
             { 
                 headers: {
