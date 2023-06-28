@@ -8,12 +8,14 @@ import Protected from './pages/Protected'
 // Components
 import NavBar from './components/NavBar'
 import ErrorPage from './pages/Error'
+import DefaultLoginRoute from './pages/DefaultLogin'
 
 
-// const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN
-const C_DOMAIN = process.env.REACT_APP_AUTH0_C_DOMAIN
+const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN
+// const C_DOMAIN = process.env.REACT_APP_AUTH0_C_DOMAIN
 const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID
-const AUDIENCE = process.env.REACT_APP_AUTH0_AUDIENCE
+// const AUDIENCE = process.env.REACT_APP_AUTH0_AUDIENCE
+const MFA_AUDIENCE = "https://eric-culley-auth0.us.auth0.com/mfa/"
 
 // const LAYER0_DOMAIN = process.env.REACT_APP_LAYER0_DOMAIN
 // const LAYER0_CLIENT_ID = process.env.REACT_APP_LAYER0_CLIENT_ID
@@ -48,17 +50,18 @@ const App = () => {
   return (
       <Router>
         <Auth0ProviderWithRedirectCallback
-          domain={C_DOMAIN}
+          domain={DOMAIN}
           clientId={CLIENT_ID}
           redirectUri={window.location.origin}
           // redirectUri={'http://localhost:3001/profile'}
           // redirectUri={'https://jwt.io'}
-          audience={AUDIENCE}
+          // audience={AUDIENCE}
+          audience={MFA_AUDIENCE}
           // scope={'read:messsage'}
           // sessionCheckExpiryDays is basically tryAutoAuthorize
           // sessionCheckExpiryDays={.01}
-          useRefreshTokens={true}
-          cacheLocation={'localstorage'}
+          // useRefreshTokens={true}
+          // cacheLocation={'localstorage'}
           // organization={'org_cVrNdGU2SoPSvZoT'}
           // customParam={'test_param'}
           // screen_hint={'signup'}
@@ -68,9 +71,10 @@ const App = () => {
             <NavBar />
             <Routes>
               <Route path="/" exact element={<Main />} />
+              <Route path="/login" exact element={<DefaultLoginRoute />} />
               <Route path="/protected" element={<Protected />} />
-              {/* <Route path="/step-up" element={<StepUp />} /> */}
               {/* <Route path="/idp-login" element={<IdpLogin />} /> */}
+              {/* <Route path="/step-up" element={<StepUp />} /> */}
               <Route path="/error" element={<ErrorPage />} />
             </Routes>
           </div>
