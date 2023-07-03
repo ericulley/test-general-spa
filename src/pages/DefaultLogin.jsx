@@ -14,10 +14,8 @@ const DefaultLoginRoute = () => {
         if (organization && invitation) {
             console.table({organization: organization, invitation: invitation})
             return loginWithRedirect({
-                authorizationParams: {
                     organization: organization,
                     invitation: invitation    
-                }
             })
         } else {
             return loginWithRedirect()
