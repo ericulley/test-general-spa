@@ -9,10 +9,11 @@ const DefaultLoginRoute = () => {
     const invitation = searchParams.get('invitation');
     const organization = searchParams.get('organization');
     
-    const redirectToAuthorize = (params) => {
+    const redirectToAuthorize = () => {
+        console.table({invitation: invitation, organization: organization})
         if (organization && invitation) {
             console.table({organization: organization, invitation: invitation})
-            loginWithRedirect({
+            return loginWithRedirect({
                 authorizationParams: {
                     organization: organization,
                     invitation: invitation    
@@ -22,6 +23,7 @@ const DefaultLoginRoute = () => {
             return loginWithRedirect()
         }
     }
+
     return redirectToAuthorize()
 }
 

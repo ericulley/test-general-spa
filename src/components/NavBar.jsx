@@ -28,7 +28,7 @@ const NavBar = () => {
 
     const login = async () => {
         loginWithRedirect({
-            // connection: "sms",
+            // connection: "email",
             // response_mode: "web_message",
             // scope: "enroll",
             // audience: "https://eric-culley-auth0.us.auth0.com/mfa/"
