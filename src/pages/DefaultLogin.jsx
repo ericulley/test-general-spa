@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 const DefaultLoginRoute = () => {
 
     const { loginWithRedirect } = useAuth0()
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [searchParams] = useSearchParams();
 
     const invitation = searchParams.get('invitation');
     const organization = searchParams.get('organization');

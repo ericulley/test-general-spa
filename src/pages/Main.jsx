@@ -3,6 +3,7 @@ import { useState } from 'react'
 // Components
 import RequestData from '../components/RequestData'
 import UserInfo from '../components/UserInfo'
+import axios from 'axios'
 
 const Main = () => {
 
@@ -13,18 +14,28 @@ const Main = () => {
     const getId = () => {
         getIdTokenClaims().then((res) => {
             console.log("Id Token Claims: ", res)
-            // setIdTokenSt(res)
+            setIdTokenSt(res)
         }).catch((err) => {
             console.log(err)
         })
     }
 
     const getToken = async () => {
-        const token = await getAccessTokenSilently({detailedResponse: true})
+        const token = await getAccessTokenSilently({audience: "https://eric-culley-auth0.us.auth0.com/mfa/"})
         console.log("ACCESS TOKEN", token)
-        const ls = JSON.parse(localStorage.getItem("@@auth0spajs@@::HbzOhfgL01pBqw3gUS66rm22qgqAdhnE::test-general-nodeAPI::openid profile email offline_access"));
-        let rt = ls.body.refresh_token;
-        console.log(rt);
+        const mfaResponse = await axios({
+            method: 'GET', 
+            url: 'https://eric-culley-auth0.us.auth0.com/mfa/authenticators',
+            headers: {
+                'authorization': `Bearer ${token}`,
+                'content-type': 'application/json'
+            }
+
+        })
+        console.log("MFA Response: ", mfaResponse);
+        // const ls = JSON.parse(localStorage.getItem("@@auth0spajs@@::HbzOhfgL01pBqw3gUS66rm22qgqAdhnE::test-general-nodeAPI::openid profile email offline_access"));
+        // let rt = ls.body.refresh_token;
+        // console.log(rt);
     }
 
     return (

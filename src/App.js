@@ -9,12 +9,13 @@ import Protected from './pages/Protected'
 import NavBar from './components/NavBar'
 import ErrorPage from './pages/Error'
 import DefaultLoginRoute from './pages/DefaultLogin'
+import IdpLogin from './pages/IdpLogin'
 
 
-const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN
-// const C_DOMAIN = process.env.REACT_APP_AUTH0_C_DOMAIN
+// const DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN
+const C_DOMAIN = process.env.REACT_APP_AUTH0_C_DOMAIN
 const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID
-// const AUDIENCE = process.env.REACT_APP_AUTH0_AUDIENCE
+const AUDIENCE = process.env.REACT_APP_AUTH0_AUDIENCE
 const MFA_AUDIENCE = "https://eric-culley-auth0.us.auth0.com/mfa/"
 
 // const LAYER0_DOMAIN = process.env.REACT_APP_LAYER0_DOMAIN
@@ -50,14 +51,14 @@ const App = () => {
   return (
       <Router>
         <Auth0ProviderWithRedirectCallback
-          domain={DOMAIN}
+          domain={C_DOMAIN}
           clientId={CLIENT_ID}
           redirectUri={window.location.origin}
           // redirectUri={'http://localhost:3001/profile'}
           // redirectUri={'https://jwt.io'}
-          // audience={AUDIENCE}
-          audience={MFA_AUDIENCE}
-          // scope={'read:messsage'}
+          audience={AUDIENCE}
+          // audience={MFA_AUDIENCE}
+          // scope={'openid profile'}
           // sessionCheckExpiryDays is basically tryAutoAuthorize
           // sessionCheckExpiryDays={.01}
           // useRefreshTokens={true}
@@ -73,7 +74,7 @@ const App = () => {
               <Route path="/" exact element={<Main />} />
               <Route path="/login" exact element={<DefaultLoginRoute />} />
               <Route path="/protected" element={<Protected />} />
-              {/* <Route path="/idp-login" element={<IdpLogin />} /> */}
+              <Route path="/idp-login" element={<IdpLogin />} />
               {/* <Route path="/step-up" element={<StepUp />} /> */}
               <Route path="/error" element={<ErrorPage />} />
             </Routes>

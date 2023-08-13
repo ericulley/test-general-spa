@@ -1,7 +1,6 @@
 // Dependencies
 import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react'
-// import Cookies from 'js-cookie'
 
 const NavBar = () => {
 
@@ -9,28 +8,12 @@ const NavBar = () => {
 
     const [accessMsg, setAccessMsg] = useState("")
 
-    // Enable SSO Check on Load
-    // useEffect( async () => {
-        // console.log('***useEffect***')
-        // if (!isAuthenticated && !Cookies.get('auth0.is.authenticated')) {
-        //     console.log("Line 14: This Effect Was Triggered")
-        //     const token = await getAccessTokenSilently({
-        //         organization: 'org_cVrNdGU2SoPSvZoT'
-        //     });
-        //     console.log('Line 17, Token: ', token);
-        // }
-      
-        // const token2 = await getAccessTokenSilently({
-        //     organization: 'org_cVrNdGU2SoPSvZoT'
-        // });
-        // console.log('Line 17, Token: ', token2);
-    //   }, [])
-
     const login = async () => {
         loginWithRedirect({
             // connection: "email",
+            // connection: "test-saml-connection",
             // response_mode: "web_message",
-            // scope: "enroll",
+            // scope: "openid email",
             // audience: "https://eric-culley-auth0.us.auth0.com/mfa/"
             // prompt: 'consent',
             // login_hint: 'eric.culley@auth0.com',
@@ -65,29 +48,6 @@ const NavBar = () => {
                 console.log("ERROR: ", err)
             }
         })
-
-        // LOGIN WITH AN ORG
-        // loginWithRedirect({
-        //     // organization: 'org_bMWVaffCfWlnITLQ'
-        // }).then((res) => {
-        //     console.log(res)
-        // })
-       
-        // getAccessTokenSilently({
-        //     organization: 'org_bMWVaffCfWlnITLQ'
-        // }).then((res) => {
-        //     console.log(res)
-        // })
-        
-        // console.log(isAuthenticated)
-        // try {
-        //     const sesh = await getAccessTokenSilently({ignoreCache: true})
-        //     if (!!sesh) {
-        //         console.log(true)
-        //     }
-        // } catch (err) {
-        //     console.log(err)
-        // }
         
 
         // getIdTokenClaims({
@@ -102,7 +62,7 @@ const NavBar = () => {
 
     const appLogout = async () => {
         await logout({
-            federated: true,
+            // federated: true,
             // returnTo: 'https://idp.acmetest.org/v2/logout',
             // client_id: process.env.REACT_APP_CLIENT_ID
             // returnTo: 'https://samltool.io'
