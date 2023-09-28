@@ -37,6 +37,7 @@ const NavBar = () => {
 
         // LOGIN WITH POPUP
         await loginWithPopup({
+            redirectUri: window.location.origin
             // max_age: 0,
             // scope: '',
             // manageAccount: true
@@ -62,8 +63,8 @@ const NavBar = () => {
 
     const appLogout = async () => {
         await logout({
-            // federated: true,
-            // returnTo: 'https://idp.acmetest.org/v2/logout',
+            federated: true,
+            // returnTo: 'https://google.com',
             // client_id: process.env.REACT_APP_CLIENT_ID
             // returnTo: 'https://samltool.io'
         })

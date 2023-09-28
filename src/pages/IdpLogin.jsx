@@ -14,6 +14,7 @@ const IdpLogin = () => {
             })
         } else {
             return loginWithRedirect()
+            // You could optionaly return an error since this endpoint should be specifically for IdP-Initiated flows.
         }
     }
 
