@@ -1,3 +1,3 @@
 # General SPA Test App
 
-general purpose sinplge page application for testing.
+general purpose single page application for testing.
