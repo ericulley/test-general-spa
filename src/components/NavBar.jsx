@@ -10,21 +10,24 @@ const NavBar = () => {
 
     const login = async () => {
         loginWithRedirect({
-            // connection: "email",
-            // connection: "test-saml-connection",
-            // response_mode: "web_message",
-            // scope: "openid email",
-            // audience: "https://eric-culley-auth0.us.auth0.com/mfa/"
-            // prompt: 'consent',
-            // login_hint: 'eric.culley@auth0.com',
-            // screen_hint: 'signup'
-            // organization: 'org_cVrNdGU2SoPSvZoT'
-            // ui_locales: 'fr-FR',
-            // test_param3: 'foo-bar',
+            authorizationParams: {
+                // connection: "email",
+                // connection: "Username-Password-Authentication",
+                // response_mode: "web_message",
+                // scope: "openid email",
+                // audience: "https://eric-culley-auth0.us.auth0.com/mfa/"
+                // prompt: 'login',
+                // login_hint: 'eric.culley@auth0.com',
+                // screen_hint: 'signup'
+                // organization: 'org_cVrNdGU2SoPSvZoT',
+                // ui_locales: 'fr-FR',
+                // skipMFA: 'true',
+                'ext-guest': 'true'
+            },
             // appState: {
             //     // returnTo: '/protected',
             //     test: true
-            //   }
+            // }
         }).then(() => { 
             if (!user) {
                 setAccessMsg("Access Denied: Please logout and try again.")
@@ -63,10 +66,11 @@ const NavBar = () => {
 
     const appLogout = async () => {
         await logout({
-            federated: true,
-            // returnTo: 'https://google.com',
             // client_id: process.env.REACT_APP_CLIENT_ID
-            // returnTo: 'https://samltool.io'
+            logoutParams: {
+                // federated: true,
+                // returnTo: 'https://google.com',
+            }
         })
         console.log("Logout Check")
     }

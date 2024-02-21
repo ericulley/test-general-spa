@@ -4,9 +4,10 @@ import { useSearchParams } from 'react-router-dom'
 const IdpLogin = () => {
 
     const { loginWithRedirect } = useAuth0()
-    let [searchParams] = useSearchParams();
+    let [searchParams, setSearchParams] = useSearchParams();
 
     const redirectToAuthorize = () => {
+        console.log("Bob")
         const connection = searchParams.get('connection');
         if (connection) {
             return loginWithRedirect({
